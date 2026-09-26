@@ -7,6 +7,7 @@ renv/library/
 renv/staging/
 
 data/raw/
+data/raw/rtt/_temp_extract/
 
 .DS_Store
 Thumbs.db
