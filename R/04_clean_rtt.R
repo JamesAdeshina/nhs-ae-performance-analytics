@@ -244,3 +244,165 @@ rtt_validation <- rtt_incomplete %>%
   )
 
 rtt_validation
+
+
+# ---------------------------------------------------------
+# Build provider-level RTT fact table
+# RTT = Referral to Treatment
+# ---------------------------------------------------------
+
+fact_rtt_provider <- rtt_incomplete %>%
+  filter(
+    treatment_function_code == "C_999"
+  ) %>%
+  group_by(
+    report_month,
+    provider_parent_org_code,
+    provider_parent_name,
+    provider_org_code,
+    provider_org_name
+  ) %>%
+  summarise(
+    total_waiting = sum(total_all, na.rm = TRUE),
+    
+    within_18_weeks = sum(within_18_weeks, na.rm = TRUE),
+    
+    over_18_weeks = sum(over_18_weeks, na.rm = TRUE),
+    
+    over_52_weeks = sum(over_52_weeks, na.rm = TRUE),
+    
+    over_65_weeks = sum(over_65_weeks, na.rm = TRUE),
+    
+    over_78_weeks = sum(over_78_weeks, na.rm = TRUE),
+    
+    over_104_weeks = sum(over_104_weeks, na.rm = TRUE),
+    
+    .groups = "drop"
+  ) %>%
+  mutate(
+    within_18_weeks_pct =
+      if_else(
+        total_waiting > 0,
+        within_18_weeks / total_waiting,
+        NA_real_
+      )
+  )
+
+
+# ---------------------------------------------------------
+# Build specialty-level RTT fact table
+# ---------------------------------------------------------
+
+fact_rtt_specialty <- rtt_incomplete %>%
+  filter(
+    treatment_function_code != "C_999"
+  ) %>%
+  group_by(
+    report_month,
+    provider_parent_org_code,
+    provider_parent_name,
+    provider_org_code,
+    provider_org_name,
+    treatment_function_code,
+    treatment_function_name
+  ) %>%
+  summarise(
+    total_waiting = sum(total_all, na.rm = TRUE),
+    
+    within_18_weeks = sum(within_18_weeks, na.rm = TRUE),
+    
+    over_18_weeks = sum(over_18_weeks, na.rm = TRUE),
+    
+    over_52_weeks = sum(over_52_weeks, na.rm = TRUE),
+    
+    over_65_weeks = sum(over_65_weeks, na.rm = TRUE),
+    
+    over_78_weeks = sum(over_78_weeks, na.rm = TRUE),
+    
+    over_104_weeks = sum(over_104_weeks, na.rm = TRUE),
+    
+    .groups = "drop"
+  ) %>%
+  mutate(
+    within_18_weeks_pct =
+      if_else(
+        total_waiting > 0,
+        within_18_weeks / total_waiting,
+        NA_real_
+      )
+  )
+
+
+# ---------------------------------------------------------
+# Inspect final fact-table sizes
+# ---------------------------------------------------------
+
+cat(
+  "Provider-level RTT rows:",
+  nrow(fact_rtt_provider),
+  "\n"
+)
+
+cat(
+  "Specialty-level RTT rows:",
+  nrow(fact_rtt_specialty),
+  "\n"
+)
+
+glimpse(fact_rtt_provider)
+
+glimpse(fact_rtt_specialty)
+
+
+
+# ---------------------------------------------------------
+# Validate fact-table grain
+# ---------------------------------------------------------
+
+provider_duplicates <- fact_rtt_provider %>%
+  count(
+    report_month,
+    provider_org_code
+  ) %>%
+  filter(n > 1)
+
+provider_duplicates
+
+
+specialty_duplicates <- fact_rtt_specialty %>%
+  count(
+    report_month,
+    provider_org_code,
+    treatment_function_code
+  ) %>%
+  filter(n > 1)
+
+specialty_duplicates
+
+
+
+print(specialty_duplicates)
+
+# ---------------------------------------------------------
+# Export Power BI-ready RTT fact tables
+# RTT = Referral to Treatment
+# ---------------------------------------------------------
+
+write_csv(
+  fact_rtt_provider,
+  here("data", "processed", "fact_rtt_provider.csv")
+)
+
+write_csv(
+  fact_rtt_specialty,
+  here("data", "processed", "fact_rtt_specialty.csv")
+)
+
+
+file.exists(
+  here("data", "processed", "fact_rtt_provider.csv")
+)
+
+file.exists(
+  here("data", "processed", "fact_rtt_specialty.csv")
+)
