@@ -1,0 +1,15 @@
+column_name,distinct_values
+provider_org_name,539
+provider_org_code,538
+commissioner_org_code,129
+commissioner_org_name,122
+commissioner_parent_org_code,37
+commissioner_parent_name,37
+provider_parent_org_code,36
+provider_parent_name,36
+treatment_function_code,24
+treatment_function_name,24
+rtt_part_type,5
+rtt_part_description,5
+period,4
+source_file,4
