@@ -13,7 +13,6 @@ The project uses **R** for ingestion, profiling, cleaning, validation, dimension
 > **Portfolio / demonstration project only.**  
 > This repository uses public, aggregated NHS England data. It is not an internal NHS system, does not contain patient-level data, and should not be used for clinical decision-making.
 
----
 
 ## Project Status
 
@@ -34,7 +33,6 @@ Completed so far:
 - Final quality-assurance outputs
 - Power BI-ready CSV exports
 
----
 
 ## Business Objective
 
@@ -53,7 +51,6 @@ The objective is to build a concise operational performance dashboard that helps
 
 The final dashboard is intended to reduce manual analysis and present a clear management view of operational pressure.
 
----
 
 ## Core Business Questions
 
@@ -70,7 +67,6 @@ The final dashboard is intended to reduce manual analysis and present a clear ma
 11. Which organisations are improving or deteriorating month on month?
 12. What should management pay attention to in the latest reporting period?
 
----
 
 ## Data Sources
 
@@ -123,7 +119,6 @@ The analytical backlog model uses:
 
 These represent pathways that are still waiting for treatment and are therefore the primary source for waiting-list backlog analysis.
 
----
 
 ## Current Data Volume
 
@@ -148,7 +143,6 @@ with **121 source columns** per monthly extract.
 
 The raw RTT data is intentionally reduced to analytics-friendly fact tables before loading into Power BI. The objective is not to preserve redundant commissioner-level records in the reporting model, but to create fact tables at the correct business grain.
 
----
 
 ## Key Performance Indicators
 
@@ -175,7 +169,6 @@ The raw RTT data is intentionally reduced to analytics-friendly fact tables befo
 - 78+ Week Waits
 - 104+ Week Waits
 
----
 
 ## RTT Waiting-Band Logic
 
@@ -200,7 +193,6 @@ Within 18 weeks + 18+ weeks = Total incomplete waiting list
 
 for all **253,553 Part_2 incomplete-pathway source records**, with **0 mismatches**.
 
----
 
 ## Data Model
 
@@ -273,7 +265,6 @@ These are treated as naming-history issues rather than duplicate provider identi
 
 Contains treatment function code and treatment function name.
 
----
 
 ## Data Engineering Workflow
 
@@ -319,7 +310,6 @@ Public NHS England files
        Dashboard
 ```
 
----
 
 ## Data Quality and Validation
 
@@ -366,7 +356,6 @@ Validation outputs are stored under:
 outputs/validation/
 ```
 
----
 
 ## Project Structure
 
@@ -409,7 +398,6 @@ NHS-AE-Performance-Analytics/
 └── README.md
 ```
 
----
 
 ## R Scripts
 
@@ -437,7 +425,6 @@ Builds `dim_date`, `dim_provider`, and `dim_specialty`, while also checking dime
 
 Performs final model validation, including foreign-key checks, KPI range checks, provider-specialty reconciliation, processed-file checks, and Quality Assurance outputs.
 
----
 
 ## Reproducibility
 
@@ -471,7 +458,6 @@ Then run:
 06_validate_export.R
 ```
 
----
 
 ## Raw Data Policy
 
@@ -485,7 +471,6 @@ This keeps the repository lightweight and avoids committing large monthly source
 
 The repository contains transformation scripts, processed outputs, data-quality results, validation results, and Power BI assets as the project develops.
 
----
 
 ## Power BI Dashboard Plan
 
@@ -536,7 +521,6 @@ Planned filters:
 - provider parent / region
 - specialty / treatment function
 
----
 
 ## Planned Enhancements
 
@@ -551,7 +535,6 @@ Planned filters:
 - publish final portfolio case study
 - add architecture and data-model diagrams
 
----
 
 ## Tools
 
@@ -567,7 +550,6 @@ Planned filters:
 | Version control | Git / GitHub |
 | Portfolio publishing | Personal portfolio / case study |
 
----
 
 ## Design Principles
 
@@ -585,7 +567,6 @@ Planned filters:
 - document assumptions and source limitations
 - avoid unsupported causal claims
 
----
 
 ## Limitations
 
@@ -598,7 +579,6 @@ Planned filters:
 - this project contains no patient-level data
 - this project is not intended for clinical decision-making
 
----
 
 ## Repository Goal
 
@@ -620,7 +600,6 @@ This repository demonstrates capability across:
 
 The goal is to show the full workflow from operational source data to a validated management-reporting product, rather than simply producing charts from a pre-cleaned dataset.
 
----
 
 ## Author
 
@@ -632,7 +611,6 @@ GitHub: [JamesAdeshina](https://github.com/JamesAdeshina)
 
 Portfolio: [jamesadeshina.com](https://jamesadeshina.com/)
 
----
 
 ## Disclaimer
 
