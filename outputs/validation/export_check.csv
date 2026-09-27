@@ -1,0 +1,7 @@
+file_name,exists
+fact_ae.csv,TRUE
+fact_rtt_provider.csv,TRUE
+fact_rtt_specialty.csv,TRUE
+dim_date.csv,TRUE
+dim_provider.csv,TRUE
+dim_specialty.csv,TRUE

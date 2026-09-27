@@ -1,0 +1,7 @@
+table_name,row_count
+fact_ae,956
+fact_rtt_provider,2130
+fact_rtt_specialty,14298
+dim_date,5
+dim_provider,591
+dim_specialty,23

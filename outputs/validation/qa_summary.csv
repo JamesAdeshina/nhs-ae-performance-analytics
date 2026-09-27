@@ -1,0 +1,22 @@
+check,issue_count,status
+A&E fact duplicate keys,0,PASS
+RTT provider fact duplicate keys,0,PASS
+RTT specialty fact duplicate keys,0,PASS
+Date dimension duplicate keys,0,PASS
+Provider dimension duplicate keys,0,PASS
+Specialty dimension duplicate keys,0,PASS
+A&E missing date keys,0,PASS
+RTT provider missing date keys,0,PASS
+RTT specialty missing date keys,0,PASS
+A&E missing provider keys,0,PASS
+RTT provider missing provider keys,0,PASS
+RTT specialty missing provider keys,0,PASS
+RTT missing specialty keys,0,PASS
+A&E performance below 0,0,PASS
+A&E performance above 1,0,PASS
+RTT provider reconciliation mismatches,0,PASS
+RTT specialty reconciliation mismatches,0,PASS
+RTT provider percentage below 0,0,PASS
+RTT provider percentage above 1,0,PASS
+RTT specialty percentage below 0,0,PASS
+RTT specialty percentage above 1,0,PASS
